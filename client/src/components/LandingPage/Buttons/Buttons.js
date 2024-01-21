@@ -18,8 +18,29 @@ const getReturnParams = (hash) => {
     accumulater[key] = value;
     return accumulater;
   }, {});
+
+  return paramSplit;
 };
-const RedirectPage = () => {
+
+// const RedirectPage = () => {
+//   React.useEffect(() => {
+//     if(window.location.hash){
+//       const {
+//         access_token,
+//         expires_in,
+//         token_type
+//       } = getReturnParams(window.location.hash);
+//
+//       localStorage.clear();
+//       localStorage.setItem("accessToken", access_token);
+//       localStorage.setItem("expiresIn", expires_in);
+//       localStorage.setItem("tokenType", token_type);
+//     }
+//   })
+// }
+
+export default function Buttons() {
+
   React.useEffect(() => {
     if(window.location.hash){
       const {
@@ -27,20 +48,19 @@ const RedirectPage = () => {
         expires_in,
         token_type
       } = getReturnParams(window.location.hash);
+
       localStorage.clear();
       localStorage.setItem("accessToken", access_token);
       localStorage.setItem("expiresIn", expires_in);
       localStorage.setItem("tokenType", token_type);
     }
   })
-}
-export default function Buttons() {
-
   const handleLogin = () => {
-    console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
+    //console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
     window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
-}
-
+    RedirectPage;
+  }
+  //localStorage.getItem("accessToken")
   return (
     <div className="buttons">
       <button className="spotify" onClick={handleLogin}>
