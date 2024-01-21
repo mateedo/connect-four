@@ -58,7 +58,6 @@ export default function Buttons() {
   const handleLogin = () => {
     //console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
     window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
-    RedirectPage;
   }
   //localStorage.getItem("accessToken")
   return (
