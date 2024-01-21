@@ -1,0 +1,9 @@
+.landing-page{
+    display:flex;
+    /* justify-content:center; */
+    align-items:center;
+    flex-direction: column;
+    height:100vh;
+    background-color: rgb(255, 253, 253);
+    /* backgroundImage:url("../public/spotify-background.png") */
+}
