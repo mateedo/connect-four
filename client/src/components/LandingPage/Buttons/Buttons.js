@@ -1,6 +1,6 @@
 import React from "react";
 import "./Buttons.css";
-import logo from "./images/spotify-logo.png";
+import logo from "../../../images/spotify-logo.png";
 const client_id = '1909cb02e93d4ef3bb9c89518f864cca'; // Your client id
 const redirect_uri = "http://localhost:3000";
 const space_delim = "%20";
