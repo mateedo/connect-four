@@ -1,9 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from "react";
 import LandingPage from "./components/LandingPage/LandingPage";
 
 import './App.css';
 
+
 function App() {
+  
   return (
     <Router>
       <div className="App">

@@ -1,0 +1,35 @@
+.buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:120px;
+}
+
+.spotify{
+    height:40px;
+    width:180px;
+    border:none;
+    text-align:center;
+    display:flex;
+    /* justify-content:center; */
+    align-items:center; 
+    border-radius:12px;
+    color:white;
+    background-color: #1DB954;
+}
+p{
+    width:120px;
+    font-size:15px;
+    /* border:1px solid black; */
+    margin-left:20px;
+    padding:0px;
+}
+img{
+    /* border:1px solid black; */
+    margin-left:0px;
+    height:35px;
+    width:35px;
+}
+button:hover{
+    cursor:pointer
+}
