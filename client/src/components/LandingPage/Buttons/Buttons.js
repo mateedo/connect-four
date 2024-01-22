@@ -65,7 +65,6 @@ export default function Buttons() {
       <button className="spotify" onClick={handleLogin}>
         <p>Log in to Spotify</p>
         <img src={logo} alt=""></img></button>
-        <p>{data.members[0]}</p>
     </div>
   );
 }
