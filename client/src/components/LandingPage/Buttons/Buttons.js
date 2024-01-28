@@ -25,39 +25,11 @@ const getReturnParams = (hash) => {
 
 
 export default function Buttons() {
-
-  React.useEffect(() => {
-    if(window.location.hash){
-      const {
-        access_token,
-        expires_in,
-        token_type
-      } = getReturnParams(window.location.hash);
-
-      localStorage.clear();
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("expiresIn", expires_in);
-      localStorage.setItem("tokenType", token_type);
-    }
-  })
-
   const [data, setData] = useState([{}])
 
-  useEffect(() => {
-    fetch("http://localhost:5000/members").then(
-        res => res.json()
-    ).then(
-        data => {
-          setData(data)
-          console.log(data)
-        }
-    )
-  }, [])
-
-
   const handleLogin = () => {
-    //console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
-    window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
+    // window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
+    window.location = "http://localhost:5000/"
   }
   //localStorage.getItem("accessToken")
   return (
