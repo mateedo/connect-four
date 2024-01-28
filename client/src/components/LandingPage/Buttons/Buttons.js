@@ -1,7 +1,7 @@
 import React from "react";
+import {useEffect, useState} from "react";
 import "./Buttons.css";
 import logo from "../../../images/spotify-logo.png";
-import {useEffect, useState} from 'react'
 const client_id = '1909cb02e93d4ef3bb9c89518f864cca'; // Your client id
 const redirect_uri = "http://localhost:3000";
 const space_delim = "%20";
@@ -42,30 +42,31 @@ export default function Buttons() {
   })
 
   const [data, setData] = useState([{}])
-
-  useEffect(() => {
-    fetch("http://localhost:5000/members").then(
-        res => res.json()
-    ).then(
-        data => {
-          setData(data)
-          console.log(data)
-        }
-    )
-  }, [])
+  let word;
+  // useEffect(() => {
+  //   word = "ok";
+  //   fetch("http://localhost:5000/members").then(
+  //       res => res.json()
+  //   ).then(
+  //       data => {
+  //         setData(data)
+  //         console.log(data)
+  //       }
+  //   )
+  // }, [])
 
 
   const handleLogin = () => {
-    //console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
+    console.log(`${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`)
     window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
   }
-  //localStorage.getItem("accessToken")
+  localStorage.getItem("accessToken")
   return (
     <div className="buttons">
       <button className="spotify" onClick={handleLogin}>
         <p>Log in to Spotify</p>
         <img src={logo} alt=""></img></button>
-        <p>{data.members[0]}</p>
+        {/* <p>{data.members[0]}</p> */}
     </div>
   );
 }
