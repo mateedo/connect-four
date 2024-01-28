@@ -1,5 +1,4 @@
 import React from "react";
-import {useEffect, useState} from "react";
 import "./Buttons.css";
 import logo from "../../../images/spotify-logo.png";
 const client_id = '1909cb02e93d4ef3bb9c89518f864cca'; // Your client id
