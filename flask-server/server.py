@@ -71,6 +71,42 @@ def getTracks():
     return test
 
 
+@app.route("/getTopTracks")
+def getTopTracks():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect("/")
+
+    sp = spotipy.Spotify(auth=token_info['access_token'])
+    test = []
+    tracks = sp.current_user_top_tracks(limit=20, offset=0, time_range="short_term")["items"]
+    for i in range(0, 20):
+        obj = {
+            'song_title': tracks[i]["name"],
+            'artists': tracks[i]['album']['artists'][0]['name'],
+            'image_url': tracks[i]['album']['images'][0]['url'],
+            'popularity': tracks[i]['popularity']
+        }
+        test.append(obj)
+
+    #test = sp.current_user_top_tracks(limit=20, offset=0, time_range="short_term")
+
+    return test
+
+@app.route("/topTrackTest")
+def topTrackTest():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect("/")
+
+    sp = spotipy.Spotify(auth=token_info['access_token'])
+    tracks = sp.current_user_top_tracks(limit=20, offset=0, time_range="short_term")['items'][0]
+    return tracks
+
 def get_token():
     token_info = session.get(TOKEN_INFO, None)
     if not token_info:
