@@ -8,9 +8,12 @@
 }
 .authors{
     margin-bottom:20px;
+    text-align:center;
 }
 .nav{
     width:500px;
+    display:flex;
+    justify-content:center;
 }
 .nav > a{
     flex-direction: column;
