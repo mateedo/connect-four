@@ -1,3 +1,9 @@
+.subtitle{
+    color:#9c9c9c;
+    font-weight:100;
+    /* font weight wont change because custom font */
+}
+
 .track{
     display:flex;
     align-items:center;
@@ -6,28 +12,54 @@
     height:70px;
     border-radius:5px;
 }
+.track-num{
+    width:30px;
+    display:flex;
+    justify-content:center;
+    /* background-color:green; */
+    /* margin-left:10px;
+    margin-right:5px; */
+
+}
 .track-info{
     display:flex;
     align-items:center;
-    width:200px;
-    border:1px solid red;
+    width:100%;
+    /* border:1px solid red; */
     height:100%;
 
 }
-.track-info-text{
+.track-title{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    /* align-items:center; */
-    width:100%;
+    width:320px;
     height:100%;
     /* border:1px solid red; */
     margin-left:8px;
+    padding-left:10px;
+}
+.track-album{
+    height:100%;
+    display:flex;
+    align-items:center;
+    width:285px;
+    /* border:1px solid red; */
+}
+.track-duration{
+    height:100%;
+    width:85px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* width:240px; */
+    /* border:1px solid red; */
+
 }
 img {
     height:50px;
     width:50px;
-    margin-left:10px;
+    margin-left:5px;
     border-radius:6px;
     margin-right:5px;
     margin-right:3px;   
