@@ -17,6 +17,7 @@ client_secret = os.getenv("SECRET_ID")
 app = Flask(__name__)
 app.secret_key = "23898778923479283749"
 app.config["SESSION_COOKE_NAME"] = "Mateos cookie"
+app.config["DEBUG"] = True
 CORS(app)
 
 
@@ -45,8 +46,8 @@ def callback():
 
 def create_spotify_oauth():
     return SpotifyOAuth(
-        client_id="25d84b900cd64989b5078a55b26bcc6f",
-        client_secret="4c2a200c5b814dbabd4825e9fda0e956",
+        client_id,
+        client_secret,
         redirect_uri=url_for('callback', _external=True),
         scope="user-library-read user-top-read"
     )
@@ -67,7 +68,7 @@ def getTracks():
     test = []
     tracks = sp.current_user_saved_tracks(limit=20, offset=0, market=None)['items']
     for i in range(0,20):
-        test+=[tracks[i]["track"]['name']]
+        test+=[tracks[i]["track"]['id']]
     return test
 
 
@@ -90,10 +91,31 @@ def getTopTracks():
         tracks = sp.current_user_top_tracks(limit = 50, offset = i * 50, time_range = "short_term")["items"]
 
         for track in tracks:
-                test.append(track["id"])
-
+                # test.append(track["id"])
+                track_info = sp.track(track["id"])
+                test.append(track_info["album"]["artists"])
+                
+    # print(sp.track(test[0]))
     return jsonify(test)
-
+@app.route("/getTopTracksInfo")
+def getTopTracksInfo():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect("/")
+    
+    sp = spotipy.Spotify(auth = token_info['access_token'])
+    
+    test = []
+    for i in range(0, 5):
+        tracks = sp.current_user_top_tracks(limit = 50, offset = i * 50, time_range = "short_term")["items"]
+        for track in tracks:
+                test.append(track["id"])
+                track_info = sp.track(track["id"])
+                test.append(track_info)
+    print(sp.track(test[0]))
+    return jsonify(test)
 
 
 def get_token():
