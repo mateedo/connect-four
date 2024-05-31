@@ -27,7 +27,8 @@ export default function Playlist(props) {
         trackNum: "4",
         artistName: "Eminem",
         trackName: "Godzilla",
-        albumName: "Music To Be Murdered By"
+        albumName: "Music To Be Murdered By",
+        duration: "3:31"
     }]
     return(
         <div className="playlist">

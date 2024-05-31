@@ -29,7 +29,7 @@ export default function Buttons() {
 
   const handleLogin = () => {
     // window.location = `${url}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
-    window.location = "http://localhost:5000/"
+    window.location = "http://localhost:5000/authorize"
   }
   //localStorage.getItem("accessToken")
   return (

@@ -37,7 +37,7 @@ def authorize():
     code = request.args.get('code')
     token_info = sp_oauth.get_access_token(code)
     session["token_info"] = token_info
-    return redirect("/getTracks")
+    return redirect("/")
 
 @app.route('/callback')
 def callback():
@@ -71,6 +71,31 @@ def getTracks():
     return test
 
 
+@app.route("/getTopTracks")
+def getTopTracks():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect("/")
+    
+
+    sp = spotipy.Spotify(auth = token_info['access_token'])
+
+
+    test = []
+
+
+    for i in range(0, 5):
+        tracks = sp.current_user_top_tracks(limit = 50, offset = i * 50, time_range = "short_term")["items"]
+
+        for track in tracks:
+                test.append(track["id"])
+
+    return jsonify(test)
+
+
+
 def get_token():
     token_info = session.get(TOKEN_INFO, None)
     if not token_info:
@@ -92,4 +117,3 @@ def members():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
