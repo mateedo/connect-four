@@ -1,0 +1,20 @@
+.playlist-headings{
+    width:800px;
+    /* border:1px solid red; */
+    display:flex;
+    align-items:center;
+    height:50px;
+}
+.number {
+    margin-left:10px;
+}
+.song-title{
+    margin-left:85px;
+}
+.album-title{
+    margin-left:285px;
+    /* background-color:green; */
+}
+.duration{
+    margin-left:240px;
+}
