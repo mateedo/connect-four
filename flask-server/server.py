@@ -69,7 +69,7 @@ def getTracks():
     tracks = sp.current_user_saved_tracks(limit=20, offset=0, market=None)['items']
     for i in range(0,20):
         test+=[tracks[i]["track"]['id']]
-    return test
+    return jsonify(test)
 
 
 @app.route("/getTopTracks")
@@ -87,16 +87,17 @@ def getTopTracks():
     test = []
 
 
-    for i in range(0, 5):
+    for i in range(0, 3):
         tracks = sp.current_user_top_tracks(limit = 50, offset = i * 50, time_range = "short_term")["items"]
 
         for track in tracks:
-                # test.append(track["id"])
-                track_info = sp.track(track["id"])
-                test.append(track_info["album"]["artists"])
+                test.append(track["id"])
+                # track_info = sp.track(track["id"])
+                # test.append(track_info["album"]["artists"])
                 
     # print(sp.track(test[0]))
-    return jsonify(test)
+    return test
+
 @app.route("/getTopTracksInfo")
 def getTopTracksInfo():
     try:
@@ -115,8 +116,26 @@ def getTopTracksInfo():
                 track_info = sp.track(track["id"])
                 test.append(track_info)
     print(sp.track(test[0]))
-    return jsonify(test)
+    return test
 
+@app.route("/getSongRecommendations")
+def getSongRecommendations():
+    try:
+        token_info = get_token()
+    except:
+        print("user not logged in")
+        return redirect("/")
+    
+    sp = spotipy.Spotify(auth = token_info['access_token'])
+    seeds = getTopTracks()
+    test = [0 for _ in range(0, 5)]
+    for i in range(0, 5):
+        test[i] = seeds[i]
+    trackList = []
+    # tracks = sp.recommendations(seed_tracks = ["4FylEaO7ZcbRNLhRairniu"], limit = 1)
+    tracks = sp.recommendations(seed_tracks = test, seed_genres=None, seed_artists=None, limit = 20)
+    # sp.current_user_top_tracks(limit = 50, offset = i * 50, time_range = "short_term")["items"]
+    return jsonify(tracks)
 
 def get_token():
     token_info = session.get(TOKEN_INFO, None)
