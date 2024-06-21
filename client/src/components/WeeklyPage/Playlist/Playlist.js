@@ -2,6 +2,7 @@ import Track from "./Track/Track";
 import "./Playlist.css";
 import CoverArt from "../../../images/spotifytest.jpg";
 export default function Playlist(props) {
+    // const trackInfo = props.songData;
     const trackInfo = [ {
         trackNum: "1",
         artistName: "Eminem",
